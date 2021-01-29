@@ -2,7 +2,8 @@ import React from "react";
 import { IEpisode } from "./interfaces";
 
 export default function EpisodesList(props: any): JSX.Element {
-  const { episodes, toggleFavAction, favorites } = props;
+  const { episodes, toggleFavAction, favorites, store } = props;
+  const {state, dispatch} = store
 
   return episodes.map((episode: IEpisode) => {
     return (
@@ -15,7 +16,7 @@ export default function EpisodesList(props: any): JSX.Element {
           <button
             type="button"
             onClick={() => {
-              toggleFavAction(episode);
+              toggleFavAction(state, dispatch, episode);
             }}
           >
             {favorites.includes(episode) ? "Remove" : "Add to Fav"}
